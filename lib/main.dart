@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:region_2025/ui/splash.dart';
+import 'package:region_2025/ui/view/car_slide.dart';
 import 'package:region_2025/ui/view/layout_view.dart';
 import 'package:region_2025/ui/widget/header.dart';
 
@@ -17,9 +18,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
-      home: Splash(),
+      home: CarSlide(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
-

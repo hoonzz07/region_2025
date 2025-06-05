@@ -16,6 +16,7 @@ class CarSelectView extends StatefulWidget {
 class _CarSelectView extends State<CarSelectView> {
   XFile? image;
   XFile? camera;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -130,65 +131,81 @@ class _CarSelectView extends State<CarSelectView> {
                                                     BorderRadius.circular(2),
                                               ),
                                             ),
-                                              onPressed: () {
-                                                showModalBottomSheet(
-                                                  context: context,
-                                                  builder: (builder) {
-                                                    return Container(
-                                                      color: Colors.white,
-                                                      width: 600,
-                                                      height: 250,
-                                                      child: Column(
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                            EdgeInsets.only(
-                                                              top: 20,
-                                                            ),
-                                                          ),
-                                                          ElevatedButton(
-                                                            onPressed: (){
-                                                              widget.picker.pickImage(source: ImageSource.gallery)
+                                            onPressed: () {
+                                              showModalBottomSheet(
+                                                context: context,
+                                                builder: (builder) {
+                                                  return Container(
+                                                    color: Colors.white,
+                                                    width: 600,
+                                                    height: 250,
+                                                    child: Column(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                top: 20,
+                                                              ),
+                                                        ),
+                                                        ElevatedButton(
+                                                          onPressed: () {
+                                                            widget.picker
+                                                                .pickImage(
+                                                                  source:
+                                                                      ImageSource
+                                                                          .gallery,
+                                                                )
                                                                 .then((file) {
                                                                   setState(() {
-                                                                    image = file;
+                                                                    image =
+                                                                        file;
                                                                   });
                                                                 });
-                                                            },
-                                                            child: Text(
-                                                              '갤러리에서 사진추가',
-                                                            ),
+                                                          },
+                                                          child: Text(
+                                                            '갤러리에서 사진추가',
                                                           ),
-                                                          ElevatedButton(
-                                                            onPressed: (){
-                                                              widget.picker.pickImage(source: ImageSource.camera)
-                                                                  .then((file) {
-                                                                setState(() {
-                                                                  image = file;
+                                                        ),
+                                                        ElevatedButton(
+                                                          onPressed: () {
+                                                            widget.picker
+                                                                .pickImage(
+                                                                  source:
+                                                                      ImageSource
+                                                                          .camera,
+                                                                )
+                                                                .then((file) {
+                                                                  setState(() {
+                                                                    image =
+                                                                        file;
+                                                                  });
                                                                 });
-                                                              });
-                                                            },
-                                                            child: Text(
-                                                              '카메라에서 사진추가',
-                                                            ),
+                                                          },
+                                                          child: Text(
+                                                            '카메라에서 사진추가',
                                                           ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Builder(
+                                              builder: (context) {
+                                                if (image != null) {
+                                                  return Image.file(
+                                                    File(image!.path),
+                                                  );
+                                                }
+
+                                                return Icon(
+                                                  color: Colors.black,
+                                                  size: 53,
+                                                  Icons.image,
                                                 );
                                               },
-                                            child: Builder(builder: (context) {
-                                              if (image != null) {
-                                                return Image.file(File(image!.path));
-                                              }
-
-                                              return Icon(
-                                                color: Colors.black,
-                                                size: 53,
-                                                Icons.image,
-                                              );
-                                            })
+                                            ),
                                           ),
                                         ),
                                         Text(
